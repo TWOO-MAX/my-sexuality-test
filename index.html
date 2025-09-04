@@ -10,7 +10,6 @@
             margin: 0;
             padding: 0;
         }
-
         body {
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
             color: #333;
@@ -22,7 +21,6 @@
             align-items: center;
             background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
         }
-
         .container {
             background: rgba(255, 255, 255, 0.95);
             border-radius: 20px;
@@ -32,18 +30,15 @@
             text-align: center;
             margin: 20px auto;
         }
-
         h1 {
             color: #6c5ce7;
             margin-bottom: 0.5rem;
         }
-
         .tagline {
             color: #a29bfe;
             font-weight: 300;
             margin-bottom: 2rem;
         }
-
         .btn {
             background: #6c5ce7;
             color: white;
@@ -57,33 +52,28 @@
             display: inline-block;
             margin: 1rem 0;
         }
-
         .btn:hover {
             background: #5649c0;
             transform: translateY(-2px);
             box-shadow: 0 5px 15px rgba(108, 92, 231, 0.4);
         }
-
         .features {
             text-align: left;
             margin: 2rem 0;
             padding: 0;
         }
-
         .features li {
             margin-bottom: 0.5rem;
             list-style-type: none;
             padding-left: 1.5rem;
             position: relative;
         }
-
         .features li:before {
             content: "✓";
             color: #00b894;
             position: absolute;
             left: 0;
         }
-
         .references {
             margin-top: 2rem;
             padding-top: 1rem;
@@ -91,13 +81,11 @@
             font-size: 0.8rem;
             color: #888;
         }
-
         .progress {
             text-align: center;
             margin-bottom: 1rem;
             color: #636e72;
         }
-
         .question-card {
             background: #f8f9fa;
             border-radius: 10px;
@@ -105,7 +93,6 @@
             margin-bottom: 1.5rem;
             text-align: left;
         }
-
         .options label {
             display: block;
             padding: 1rem;
@@ -115,15 +102,12 @@
             cursor: pointer;
             transition: background 0.3s;
         }
-
         .options label:hover {
             background: #c2e6ff;
         }
-
         input[type="radio"] {
             margin-right: 10px;
         }
-
         .submit-btn {
             width: 100%;
             padding: 1rem;
@@ -135,29 +119,24 @@
             cursor: pointer;
             margin-top: 1rem;
         }
-
         .submit-btn:hover {
             background: #00a382;
         }
-
         .result-section {
             margin-bottom: 2.5rem;
             padding-bottom: 1.5rem;
             border-bottom: 2px dashed #dfe6e9;
             text-align: left;
         }
-
         .result-section:last-child {
             border-bottom: none;
         }
-
         .result-title {
             color: #6c5ce7;
             display: flex;
             align-items: center;
             gap: 10px;
         }
-
         .badge {
             display: inline-block;
             padding: 0.5rem 1rem;
@@ -166,27 +145,22 @@
             border-radius: 50px;
             font-weight: 500;
         }
-
         .result-desc {
             color: #636e72;
             line-height: 1.6;
             margin-top: 0.5rem;
         }
-
         .cta {
             text-align: center;
             margin-top: 2rem;
         }
-
         /* 页面切换效果 */
         .page {
             display: none;
         }
-
         .page.active {
             display: block;
         }
-
         /* 微信提示样式 */
         #wechat-tip {
             display: none;
@@ -201,6 +175,19 @@
             text-align: center;
             padding: 50px 20px;
             font-family: sans-serif;
+        }
+        .progress-bar {
+            width: 100%;
+            background-color: #f1f1f1;
+            border-radius: 10px;
+            margin: 1rem 0;
+        }
+        .progress-fill {
+            height: 10px;
+            background: linear-gradient(135deg, #6c5ce7, #a29bfe);
+            border-radius: 10px;
+            width: 0%;
+            transition: width 0.5s ease;
         }
     </style>
 </head>
@@ -220,17 +207,13 @@
         <div class="container">
             <h1>灵境探秘</h1>
             <p class="tagline">基于金赛光谱理论的深度性取向测评</p>
-
             <p>探索你情感宇宙的未知边界，解锁关于吸引力、心理性别与依赖模式的深度洞察。</p>
-
             <ul class="features">
-                <li>4道精心设计的投射性情境选择题</li>
+                <li>10道精心设计的投射性情境选择题</li>
                 <li>从三个维度解析你的情感模式</li>
                 <li>获得专业且富有诗意的解读报告</li>
             </ul>
-
             <button onclick="showPage('test-page')" class="btn">开始探索</button>
-
             <div class="references">
                 <p><strong>学术支持与参考文献:</strong></p>
                 <p>• Kinsey, A. C., et al. (1948). <em>Sexual Behavior in the Human Male</em>. Bloomington: Indiana University Press.</p>
@@ -245,10 +228,13 @@
     <div id="test-page" class="page">
         <div class="container">
             <h1>灵境探秘</h1>
-            <div class="progress">请根据第一直觉选择最吸引你的答案</div>
-
+            <div class="progress">请根据第一直觉选择最吸引你的答案 <span id="progress-text">1/10</span></div>
+            <div class="progress-bar">
+                <div class="progress-fill" id="progress-fill"></div>
+            </div>
             <form id="quiz-form">
-                <div class="question-card">
+                <!-- 问题1 -->
+                <div class="question-card" id="q1">
                     <p><strong>Q1.</strong> 在美术馆里，你更容易被哪类主题的作品吸引？</p>
                     <div class="options">
                         <label>
@@ -270,7 +256,8 @@
                     </div>
                 </div>
 
-                <div class="question-card">
+                <!-- 问题2 -->
+                <div class="question-card" id="q2">
                     <p><strong>Q2.</strong> 如果化身故事主角，你更想体验？</p>
                     <div class="options">
                         <label>
@@ -292,7 +279,8 @@
                     </div>
                 </div>
 
-                <div class="question-card">
+                <!-- 问题3 -->
+                <div class="question-card" id="q3">
                     <p><strong>Q3.</strong> 哪种伙伴关系让你感到最舒适和有力量？</p>
                     <div class="options">
                         <label>
@@ -314,7 +302,8 @@
                     </div>
                 </div>
 
-                <div class="question-card">
+                <!-- 问题4 -->
+                <div class="question-card" id="q4">
                     <p><strong>Q4.</strong> 你内心深处更渴望什么样的情感连接？</p>
                     <div class="options">
                         <label>
@@ -336,6 +325,144 @@
                     </div>
                 </div>
 
+                <!-- 新增问题5 -->
+                <div class="question-card" id="q5">
+                    <p><strong>Q5.</strong> 在梦境中，你更常梦见什么样的亲密场景？</p>
+                    <div class="options">
+                        <label>
+                            <input type="radio" name="q5" value="5a" required>
+                            与同性别人物展开浪漫冒险
+                        </label>
+                        <label>
+                            <input type="radio" name="q5" value="5b">
+                            与异性别人物共享宁静时光
+                        </label>
+                        <label>
+                            <input type="radio" name="q5" value="5c">
+                            与模糊性别的人物进行深度交流
+                        </label>
+                        <label>
+                            <input type="radio" name="q5" value="5d">
+                            独自探索神秘而美丽的情感景观
+                        </label>
+                    </div>
+                </div>
+
+                <!-- 新增问题6 -->
+                <div class="question-card" id="q6">
+                    <p><strong>Q6.</strong> 哪种音乐最能触动你的情感核心？</p>
+                    <div class="options">
+                        <label>
+                            <input type="radio" name="q6" value="6a" required>
+                            雄壮有力的进行曲或史诗音乐
+                        </label>
+                        <label>
+                            <input type="radio" name="q6" value="6b">
+                            柔美婉转的情歌或抒情曲
+                        </label>
+                        <label>
+                            <input type="radio" name="q6" value="6c">
+                            实验性、无性别特征的电子音乐
+                        </label>
+                        <label>
+                            <input type="radio" name="q6" value="6d">
+                            表达复杂人际关系的情歌对唱
+                        </label>
+                    </div>
+                </div>
+
+                <!-- 新增问题7 -->
+                <div class="question-card" id="q7">
+                    <p><strong>Q7.</strong> 在社交场合中，你更容易被什么样的人吸引？</p>
+                    <div class="options">
+                        <label>
+                            <input type="radio" name="q7" value="7a" required>
+                            自信果断、有领导气质的人
+                        </label>
+                        <label>
+                            <input type="radio" name="q7" value="7b">
+                            温柔体贴、善解人意的人
+                        </label>
+                        <label>
+                            <input type="radio" name="q7" value="7c">
+                            智慧超群、思想独特的人
+                        </label>
+                        <label>
+                            <input type="radio" name="q7" value="7d">
+                            神秘莫测、难以捉摸的人
+                        </label>
+                    </div>
+                </div>
+
+                <!-- 新增问题8 -->
+                <div class="question-card" id="q8">
+                    <p><strong>Q8.</strong> 你理想中的爱情更像哪种自然景观？</p>
+                    <div class="options">
+                        <label>
+                            <input type="radio" name="q8" value="8a" required>
+                            高耸的山峰 - 需要攀登征服但视野辽阔
+                        </label>
+                        <label>
+                            <input type="radio" name="q8" value="8b">
+                            深邃的海洋 - 包容一切且充满神秘
+                        </label>
+                        <label>
+                            <input type="radio" name="q8" value="8c">
+                            广阔的平原 - 平等开放且自由无限
+                        </label>
+                        <label>
+                            <input type="radio" name="q8" value="8d">
+                            变幻的极光 - 美丽罕见且难以预测
+                        </label>
+                    </div>
+                </div>
+
+                <!-- 新增问题9 -->
+                <div class="question-card" id="q9">
+                    <p><strong>Q9.</strong> 在关系中，你更看重什么？</p>
+                    <div class="options">
+                        <label>
+                            <input type="radio" name="q9" value="9a" required>
+                            安全感与稳定性
+                        </label>
+                        <label>
+                            <input type="radio" name="q9" value="9b">
+                            激情与挑战性
+                        </label>
+                        <label>
+                            <input type="radio" name="q9" value="9c">
+                            智力共鸣与成长
+                        </label>
+                        <label>
+                            <input type="radio" name="q9" value="9d">
+                            情感深度与理解
+                        </label>
+                    </div>
+                </div>
+
+                <!-- 新增问题10 -->
+                <div class="question-card" id="q10">
+                    <p><strong>Q10.</strong> 你认为自己最大的情感天赋是什么？</p>
+                    <div class="options">
+                        <label>
+                            <input type="radio" name="q10" value="10a" required>
+                            保护与提供的能力
+                        </label>
+                        <label>
+                            <input type="radio" name="q10" value="10b">
+                            滋养与关怀的能力
+                        </label>
+                        <label>
+                            <input type="radio" name="q10" value="10c">
+                            理解与沟通的能力
+                        </label>
+                        <label>
+                            <input type="radio" name="q10" value="10d">
+                            激发与挑战的能力
+                        </label>
+                    </div>
+                </div>
+
                 <button type="submit" class="submit-btn">解锁我的光谱报告 →</button>
             </form>
         </div>
@@ -348,11 +475,9 @@
                 <h1>✨ 你的灵境光谱报告 ✨</h1>
                 <p>基于你的选择，我们生成了这份独一无二的解读</p>
             </div>
-
             <div id="result-content">
                 <!-- 结果将由JavaScript动态填充 -->
             </div>
-
             <div class="cta">
                 <p>分享这份报告，看看朋友眼中的你</p>
                 <button onclick="showPage('test-page')" class="btn">再测一次</button>
@@ -361,24 +486,64 @@
     </div>
 
     <script>
-        // 问题得分映射表
+        // 问题得分映射表 - 扩展版
         const scoreMap = {
-            "1a": { orientation: 1, psy_gender: 1 },
-            "1b": { orientation: -1, psy_gender: -1 },
+            // 原问题
+            "1a": { orientation: 2, psy_gender: 1 },
+            "1b": { orientation: -2, psy_gender: -1 },
             "1c": { orientation: 0, psy_gender: 0 },
-            "1d": { orientation: 0, psy_gender: 0 },
-            "2a": { orientation: -1, psy_gender: 1 },
-            "2b": { orientation: 1, psy_gender: -1 },
+            "1d": { orientation: 0, psy_gender: 0, dependency: 1 },
+
+            "2a": { orientation: -1, psy_gender: 1, dependency: -1 },
+            "2b": { orientation: 1, psy_gender: -1, dependency: 1 },
             "2c": { orientation: 0, dependency: 1 },
-            "2d": { orientation: 0, dependency: -1 },
-            "3a": { dependency: -1 },
-            "3b": { dependency: 1 },
+            "2d": { orientation: 0, dependency: -1, psy_gender: 0 },
+
+            "3a": { dependency: -1, psy_gender: 1 },
+            "3b": { dependency: 1, psy_gender: -1 },
             "3c": { psy_gender: 1, dependency: -1 },
             "3d": { psy_gender: -1, dependency: 1 },
-            "4a": { dependency: 1 },
-            "4b": { dependency: -1 },
-            "4c": { dependency: 0 },
-            "4d": { orientation: 0 }
+
+            "4a": { dependency: 1, orientation: -1 },
+            "4b": { dependency: -1, orientation: 1 },
+            "4c": { dependency: 0, orientation: 0 },
+            "4d": { orientation: 0, dependency: 0 },
+
+            // 新增问题5
+            "5a": { orientation: 2 },
+            "5b": { orientation: -2 },
+            "5c": { orientation: 0 },
+            "5d": { orientation: 0, dependency: -1 },
+
+            // 新增问题6
+            "6a": { psy_gender: 1, orientation: 1 },
+            "6b": { psy_gender: -1, orientation: -1 },
+            "6c": { orientation: 0, psy_gender: 0 },
+            "6d": { orientation: 0, dependency: 1 },
+
+            // 新增问题7
+            "7a": { orientation: -1, psy_gender: 1 },
+            "7b": { orientation: 1, psy_gender: -1 },
+            "7c": { orientation: 0, dependency: 0 },
+            "7d": { orientation: 0, dependency: -1 },
+
+            // 新增问题8
+            "8a": { dependency: -1, psy_gender: 1 },
+            "8b": { dependency: 1, psy_gender: -1 },
+            "8c": { dependency: 0, orientation: 0 },
+            "8d": { orientation: 0, dependency: 0 },
+
+            // 新增问题9
+            "9a": { dependency: 1, orientation: -1 },
+            "9b": { dependency: -1, orientation: 1 },
+            "9c": { orientation: 0, dependency: 0 },
+            "9d": { orientation: 0, dependency: 1 },
+
+            // 新增问题10
+            "10a": { psy_gender: 1, dependency: -1 },
+            "10b": { psy_gender: -1, dependency: 1 },
+            "10c": { dependency: 0, orientation: 0 },
+            "10d": { orientation: 0, dependency: -1 }
         };
 
         // 页面切换函数
@@ -387,18 +552,35 @@
             document.querySelectorAll('.page').forEach(page => {
                 page.classList.remove('active');
             });
-
             // 显示指定页面
             document.getElementById(pageId).classList.add('active');
-
             // 滚动到顶部
             window.scrollTo(0, 0);
+
+            // 如果是测试页面，更新进度条
+            if (pageId === 'test-page') {
+                updateProgressBar();
+            }
         }
+
+        // 更新进度条
+        function updateProgressBar() {
+            const answered = document.querySelectorAll('input[type="radio"]:checked').length;
+            const total = 10;
+            const percentage = (answered / total) * 100;
+
+            document.getElementById('progress-fill').style.width = `${percentage}%`;
+            document.getElementById('progress-text').textContent = `${answered}/${total}`;
+        }
+
+        // 为所有单选按钮添加点击事件监听器
+        document.querySelectorAll('input[type="radio"]').forEach(radio => {
+            radio.addEventListener('click', updateProgressBar);
+        });
 
         // 处理测试表单提交
         document.addEventListener('DOMContentLoaded', function() {
             const quizForm = document.getElementById('quiz-form');
-
             if (quizForm) {
                 quizForm.addEventListener('submit', function(e) {
                     e.preventDefault();
@@ -408,11 +590,25 @@
                         q1: document.querySelector('input[name="q1"]:checked')?.value,
                         q2: document.querySelector('input[name="q2"]:checked')?.value,
                         q3: document.querySelector('input[name="q3"]:checked')?.value,
-                        q4: document.querySelector('input[name="q4"]:checked')?.value
+                        q4: document.querySelector('input[name="q4"]:checked')?.value,
+                        q5: document.querySelector('input[name="q5"]:checked')?.value,
+                        q6: document.querySelector('input[name="q6"]:checked')?.value,
+                        q7: document.querySelector('input[name="q7"]:checked')?.value,
+                        q8: document.querySelector('input[name="q8"]:checked')?.value,
+                        q9: document.querySelector('input[name="q9"]:checked')?.value,
+                        q10: document.querySelector('input[name="q10"]:checked')?.value
                     };
 
                     // 检查是否所有问题都已回答
-                    if (!answers.q1 || !answers.q2 || !answers.q3 || !answers.q4) {
+                    let allAnswered = true;
+                    for (let i = 1; i <= 10; i++) {
+                        if (!answers[`q${i}`]) {
+                            allAnswered = false;
+                            break;
+                        }
+                    }
+
+                    if (!allAnswered) {
                         alert('请回答所有问题后再提交！');
                         return;
                     }
@@ -451,72 +647,122 @@
             };
         }
 
-        // 获取性取向结果
+        // 获取性取向结果 - 扩展版
         function getOrientationResult(score) {
-            if (score > 3) {
+            if (score > 6) {
                 return {
-                    label: "浪漫同性恋",
-                    desc: "你的情感地图清晰地指向同性，容易被同性的特质、智慧和魅力所深深吸引。"
+                    label: "绝对同性恋取向",
+                    desc: "你的情感引力强烈指向同性，能够深刻感知并欣赏同性的魅力与特质，在同性情感连接中感受到最深的共鸣与满足。"
                 };
-            } else if (score > 0) {
+            } else if (score > 3) {
                 return {
-                    label: "双性恋（偏同性）",
-                    desc: "你拥有一张广阔的情感地图，既能欣赏异性的美好，也更容易对同性的灵魂产生深沉的浪漫情感。"
+                    label: "同性恋主导的双性恋",
+                    desc: "你主要被同性吸引，但偶尔也会对特定异性产生情感波动。你的爱恋地图以同性为核心，边缘地带向异性开放。"
                 };
-            } else if (score === 0) {
+            } else if (score > 1) {
+                return {
+                    label: "均衡双性恋（偏同性）",
+                    desc: "你能够欣赏两种性别的美好，但对同性的情感反应更为强烈和频繁，情感天平时常向同性倾斜。"
+                };
+            } else if (score >= -1) {
                 return {
                     label: "流动性双性恋",
-                    desc: "爱对你而言是超越性别的存在。你更关注的是灵魂的共振而非外在的标签，情感流动性极强。"
+                    desc: "爱对你而言是超越性别的存在。你更关注灵魂的共振而非外在标签，情感流动性极强，可能在不同生命阶段呈现不同倾向。"
                 };
             } else if (score >= -3) {
                 return {
-                    label: "双性恋（偏异性）",
-                    desc: "你享受与异性相处的浪漫，同时也对优秀的同性怀有欣赏和情感波动的可能。"
+                    label: "均衡双性恋（偏异性）",
+                    desc: "你享受与异性相处的浪漫，同时也对优秀的同性怀有欣赏和情感波动的可能，情感天平时常向异性倾斜。"
+                };
+            } else if (score >= -6) {
+                return {
+                    label: "异性恋主导的双性恋",
+                    desc: "你主要被异性吸引，但偶尔也会对特定同性产生情感波动。你的爱恋地图以异性为核心，边缘地带向同性开放。"
                 };
             } else {
                 return {
-                    label: "浪漫异性恋",
-                    desc: "你的浪漫吸引力主要指向异性，你渴望在与异性的深度连接中体验爱的完整形态。"
+                    label: "绝对异性恋取向",
+                    desc: "你的浪漫吸引力主要指向异性，你渴望在与异性的深度连接中体验爱的完整形态，对同性更多是友情或欣赏。"
                 };
             }
         }
 
-        // 获取心理性别结果
+        // 获取心理性别结果 - 扩展版
         function getGenderResult(score) {
-            if (score > 1) {
+            if (score > 6) {
                 return {
-                    label: "内心王者",
-                    desc: "你的内心住着一位国王，理性、果敢、富有领导力和保护欲，渴望掌控和开拓。"
+                    label: "太阳型原型",
+                    desc: "你的内心散发着太阳般的男性能量，理性、果敢、富有领导力和保护欲，渴望掌控和开拓，是天然的决策者和引导者。"
                 };
-            } else if (score >= 0) {
+            } else if (score > 3) {
                 return {
-                    label: "性别平衡者",
-                    desc: "你巧妙地平衡了内心的男性能量与女性能量，既能果断决策，也能同理共情，刚柔并济。"
+                    label: "火象型心理性别",
+                    desc: "你拥有较强的男性能量，善于分析、决策和行动，在压力下倾向于采取直接解决问题的策略，重视逻辑和效率。"
+                };
+            } else if (score > 1) {
+                return {
+                    label: "风象型平衡（偏阳刚）",
+                    desc: "你平衡了内心的男女性能量，但男性能量稍占上风。你能理性分析也能感性共情，但最终常以逻辑和行动为导向。"
+                };
+            } else if (score >= -1) {
+                return {
+                    label: "水象型中性平衡",
+                    desc: "你巧妙地平衡了内心的男性能量与女性能量，既能果断决策，也能同理共情，刚柔并济，能根据不同情境灵活调动不同特质。"
+                };
+            } else if (score >= -3) {
+                return {
+                    label: "土象型平衡（偏阴柔）",
+                    desc: "你平衡了内心的男女性能量，但女性能量稍占上风。你能理性思考也能深度感受，但最终常以情感和关系为导向。"
+                };
+            } else if (score >= -6) {
+                return {
+                    label: "月象型心理性别",
+                    desc: "你拥有较强的女性能量，善于感受、共情和滋养，在压力下倾向于寻求情感支持和连接，重视和谐与理解。"
                 };
             } else {
                 return {
-                    label: "内心女王",
-                    desc: "你的内心住着一位女王，感性、细腻、富有创造力和包容力，渴望滋养与连接。"
+                    label: "月亮型原型",
+                    desc: "你的内心蕴含着月亮般的女性能量，感性、细腻、富有创造力和包容力，渴望滋养与连接，是天然的治疗者和协调者。"
                 };
             }
         }
 
-        // 获取依赖倾向结果
+        // 获取依赖倾向结果 - 扩展版
         function getDependencyResult(score) {
-            if (score > 1) {
+            if (score > 6) {
                 return {
-                    label: "猫系恋人",
-                    desc: "你在关系中像一只猫，优雅、独立、需要自己的空间。你更倾向于成为被追逐、被依恋的一方。"
+                    label: "极度依赖型恋人",
+                    desc: "你在关系中像海洋般包容而依赖，渴望深度的情感融合，通过亲密连接获得能量和安全感，愿意为关系付出大量时间和精力。"
                 };
-            } else if (score >= 0) {
+            } else if (score > 3) {
                 return {
-                    label: "平衡型恋人",
-                    desc: "你在关系中追求动态的平衡，既能温柔依赖，也能可靠地被依赖，渴望相互扶持的共同成长。"
+                    label: "藤蔓型依赖倾向",
+                    desc: "你在关系中倾向于依赖对方，重视亲密感和情感支持，需要较多的 reassurance 和关注，喜欢共享活动和决策。"
+                };
+            } else if (score > 1) {
+                return {
+                    label: "适度依赖型（偏依赖）",
+                    desc: "你在关系中享受亲密与连接，但也保持一定的自主性。你倾向于分享感受和寻求支持，但也能独自处理一些问题。"
+                };
+            } else if (score >= -1) {
+                return {
+                    label: "平衡型依恋模式",
+                    desc: "你在关系中追求动态的平衡，既能温柔依赖，也能可靠地被依赖，渴望相互扶持的共同成长，健康地平衡亲密与自主。"
+                };
+            } else if (score >= -3) {
+                return {
+                    label: "适度独立型（偏独立）",
+                    desc: "你在关系中重视自主和空间，但也能够建立亲密连接。你倾向于自己解决问题，但也会在需要时寻求支持。"
+                };
+            } else if (score >= -6) {
+                return {
+                    label: "橡树型独立倾向",
+                    desc: "你在关系中倾向于保持独立，重视个人空间和自主决策，需要较少的 reassurance，喜欢独自活动和独立决策。"
                 };
             } else {
                 return {
-                    label: "犬系恋人",
-                    desc: "你在关系中像一只忠诚的狗，热情、体贴、富有奉献精神。你通过付出来感受爱，倾向于照顾对方。"
+                    label: "极度独立型恋人",
+                    desc: "你在关系中像山峰般独立而自足，渴望保持个人空间和自主性，通过独处获得能量和清晰度，重视自我实现和自我决策。"
                 };
             }
         }
@@ -524,7 +770,6 @@
         // 显示结果
         function displayResult(result) {
             const resultContent = document.getElementById('result-content');
-
             if (resultContent) {
                 resultContent.innerHTML = `
                     <div class="result-section">
@@ -532,13 +777,11 @@
                         <h3>${result.orientation.label}</h3>
                         <p class="result-desc">${result.orientation.desc}</p>
                     </div>
-
                     <div class="result-section">
                         <h2 class="result-title"><span class="badge">内心原型</span></h2>
                         <h3>${result.psy_gender.label}</h3>
                         <p class="result-desc">${result.psy_gender.desc}</p>
                     </div>
-
                     <div class="result-section">
                         <h2 class="result-title"><span class="badge">关系模式</span></h2>
                         <h3>${result.dependency.label}</h3>
